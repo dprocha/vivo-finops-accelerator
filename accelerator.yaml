@@ -1,0 +1,77 @@
+accelerator:
+  displayName: Portal Autonomous
+  description: Crie ambientes completos na nuvem (máquinas virtuais, banco de dados, clusters, balanceadores de cargas e etc).
+  iconUrl: https://raw.githubusercontent.com/dprocha/icons-accelerator/main/icons/vivo-icon.png
+  tags:
+  - Terraform
+  - vivo
+  - CCOE
+  options:
+  - name: bu
+    inputType: text
+    label: "BU:"
+    required: true
+  - name: centroCusto
+    inputType: text
+    label: "Centro de Custo:"
+    required: true
+  - name: projeto
+    inputType: text
+    label: "Projeto:"
+    required: true
+  - name: cenario
+    label: "Cenário:"
+    inputType: select
+    dataType: string
+    display: true
+    required: true
+    choices:
+      - text: "Desenvolvimento"
+        value: "dev"
+      - text: "Homologação"
+        value: "hom"
+      - text: "Produção"
+        value: "prd"
+  - name: servicos
+    inputType: text
+    label: "Serviços:"
+    required: true
+  - name: gitRepo
+    inputType: text
+    label: "Repositório GitLab:"
+    required: true 
+  - name: orcamento
+    inputType: text
+    label: "Orçamento:"
+    required: true  
+  - name: cloud
+    label: "Cloud Provider:"
+    inputType: select
+    dataType: string
+    display: true
+    required: true
+    choices:
+      - text: "Amazon Web Services"
+        value: "aws"
+      - text: "Google Cloud Services"
+        value: "gcp"
+      - text: "Huawei Cloud"
+        value: "huawei"
+      - text: "Microsoft Azure"
+        value: "azure"
+      - text: "Oracle Cloud"
+        value: "oci"
+engine:
+  merge:
+  - include: [ "**/*" ]
+    exclude: [ "terraform/**", "vivo-infraservices-accelerator.yaml"]
+  - include: [ "terraform/aws/**" ]
+    condition: "#cloud == 'aws'"
+  - include: [ "terraform/azure/**" ]
+    condition: "#cloud == 'azure'"
+  - include: [ "terraform/gcp/**" ]
+    condition: "#cloud == 'gcp'"
+  - include: [ "terraform/oci/**" ]
+    condition: "#cloud == 'oci'"  
+  - include: [ "terraform/huawei/**" ]
+    condition: "#cloud == 'huawei'"  

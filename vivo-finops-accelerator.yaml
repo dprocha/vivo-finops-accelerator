@@ -1,0 +1,11 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: vivo-infraservices-accelerator
+  namespace: accelerator-system
+spec:
+  git:
+    url: https://github.com/dprocha/vivo-4-0-accelerator.git
+    interval: 10s
+    ref:
+      branch: main
