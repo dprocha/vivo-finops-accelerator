@@ -24,4 +24,3 @@ accelerator:
 engine:
   merge:
   - include: [ "**/*" ]
-    exclude: [ "terraform/**", "vivo-infraservices-accelerator.yaml"]
